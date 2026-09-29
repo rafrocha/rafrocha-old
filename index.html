@@ -1,261 +1,339 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-  <link rel="stylesheet" href="style.css" type="text/css" />
-  <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,700,700i" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css?family=Chewy" rel="stylesheet" />
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
-  <link rel="stylesheet" href="nav.css" type="text/css" />
-  <!-- External JS -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
-  <title>Raf Rocha</title>
-</head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rafael Rocha — Senior Frontend Engineer</title>
+<meta name="description" content="Rafael Rocha is a Senior Frontend Engineer at Amazon in Seattle, shipping AI agents and the UIs they live in.">
+<style>
+  :root {
+    --bg: #0b0d10;
+    --card: #111419;
+    --ink: #eef1f4;
+    --muted: #9aa3ad;
+    --faint: #6b7480;
+    --accent: #d7f75b;
+    --line: rgba(255, 255, 255, 0.09);
+    --radius: 14px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI",
+                 Inter, Roboto, "Helvetica Neue", Arial, sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  body::before {
+    content: "";
+    position: fixed; inset: 0;
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size: 56px 56px;
+    mask-image: radial-gradient(ellipse 90% 60% at 50% 0%, black 30%, transparent 75%);
+    -webkit-mask-image: radial-gradient(ellipse 90% 60% at 50% 0%, black 30%, transparent 75%);
+    opacity: 0.5;
+    pointer-events: none;
+  }
+  .wrap { max-width: 880px; margin: 0 auto; padding: 0 24px; position: relative; }
+  ::selection { background: var(--accent); color: #0b0d10; }
 
+  /* Nav */
+  nav {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 22px 0;
+  }
+  .logo { font-weight: 800; letter-spacing: -0.02em; font-size: 18px; text-decoration: none; color: var(--ink); }
+  .logo span { color: var(--accent); }
+  .nav-links { display: flex; gap: 26px; }
+  .nav-links a {
+    color: var(--muted); text-decoration: none; font-size: 14px; font-weight: 500;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+
+  /* Hero */
+  .hero { padding: 96px 0 72px; }
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 13px; font-weight: 600; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--accent);
+    border: 1px solid rgba(215, 247, 91, 0.3);
+    padding: 7px 14px; border-radius: 999px; margin-bottom: 28px;
+  }
+  .eyebrow .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); animation: pulse 2s infinite; }
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
+  h1 {
+    font-size: clamp(44px, 8vw, 84px);
+    font-weight: 800; letter-spacing: -0.04em; line-height: 1.02;
+    margin-bottom: 18px;
+  }
+  h1 .accent { color: var(--accent); }
+  .tagline {
+    font-size: clamp(19px, 3vw, 26px); font-weight: 500;
+    color: var(--muted); letter-spacing: -0.01em;
+    max-width: 620px; margin-bottom: 36px;
+  }
+  .tagline strong { color: var(--ink); font-weight: 650; }
+  .cta-row { display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 13px 26px; border-radius: 999px;
+    font-size: 15px; font-weight: 650; text-decoration: none;
+    transition: transform 0.15s, box-shadow 0.15s, background 0.2s, color 0.2s;
+  }
+  .btn-primary { background: var(--accent); color: #0b0d10; }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(215, 247, 91, 0.35); }
+  .btn-ghost { border: 1px solid var(--line); color: var(--ink); }
+  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* Sections */
+  section { padding: 64px 0; border-top: 1px solid var(--line); }
+  .sec-label {
+    font-size: 13px; font-weight: 700; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--faint); margin-bottom: 8px;
+  }
+  .sec-label span { color: var(--accent); }
+  h2 { font-size: clamp(28px, 4.5vw, 40px); font-weight: 750; letter-spacing: -0.03em; margin-bottom: 24px; }
+  .about p { color: var(--muted); font-size: 17px; max-width: 640px; margin-bottom: 18px; }
+  .about p strong { color: var(--ink); font-weight: 650; }
+
+  /* Experience */
+  .job {
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: var(--radius); padding: 28px; margin-bottom: 16px;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .job:hover { border-color: rgba(215, 247, 91, 0.35); transform: translateY(-2px); }
+  .job-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-bottom: 6px; }
+  .job-role { font-size: 19px; font-weight: 700; letter-spacing: -0.01em; }
+  .job-co { color: var(--accent); font-weight: 650; font-size: 15px; }
+  .job-dates { color: var(--faint); font-size: 13.5px; font-weight: 500; white-space: nowrap; }
+  .job ul { list-style: none; margin-top: 12px; }
+  .job li { color: var(--muted); font-size: 15.5px; padding-left: 22px; position: relative; margin-bottom: 8px; }
+  .job li::before { content: "▸"; position: absolute; left: 2px; color: var(--accent); font-weight: 700; }
+
+  /* Skills */
+  .skill-group { margin-bottom: 26px; }
+  .skill-group h3 { font-size: 14px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--faint); margin-bottom: 12px; }
+  .pills { display: flex; flex-wrap: wrap; gap: 10px; }
+  .pill {
+    font-size: 14px; font-weight: 550; color: var(--ink);
+    background: var(--card); border: 1px solid var(--line);
+    padding: 8px 16px; border-radius: 999px;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .pill:hover { border-color: var(--accent); color: var(--accent); }
+  .pill.hot { border-color: rgba(215, 247, 91, 0.45); color: var(--accent); }
+
+  /* Contact */
+  .contact-card {
+    background: linear-gradient(135deg, #141a12 0%, var(--card) 60%);
+    border: 1px solid rgba(215, 247, 91, 0.25);
+    border-radius: 20px; padding: 48px 40px; text-align: center;
+  }
+  .contact-card h2 { margin-bottom: 12px; }
+  .contact-card p { color: var(--muted); font-size: 16px; max-width: 480px; margin: 0 auto 28px; }
+  .contact-links { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-top: 26px; }
+  .contact-links a {
+    color: var(--muted); text-decoration: none; font-size: 14.5px; font-weight: 600;
+    border: 1px solid var(--line); padding: 10px 20px; border-radius: 999px;
+    transition: all 0.2s;
+  }
+  .contact-links a:hover { color: #0b0d10; background: var(--accent); border-color: var(--accent); }
+  .phone { color: var(--faint); font-size: 14px; margin-top: 18px; }
+
+  footer {
+    padding: 40px 0 48px; border-top: 1px solid var(--line);
+    display: flex; justify-content: space-between; align-items: center;
+    color: var(--faint); font-size: 13.5px; flex-wrap: wrap; gap: 8px;
+  }
+  footer .plain { color: var(--muted); }
+
+  .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  @media (max-width: 640px) {
+    .nav-links { display: none; }
+    .hero { padding: 64px 0 52px; }
+    .contact-card { padding: 36px 24px; }
+    .job-head { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
 <body>
-  <!-- <nav id="nav-bar" class="navbar fixed-top navbar-expand-lg navbar-light bg-light wrapper">
-    <a class="navbar-brand" href="#">Rafael Rocha</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavDropdown">
-      <ul class="navbar-nav">
-        <li class="nav-item active">
-          <a class="nav-link" href="#main">About <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link" href="#projects">
-          Projects
-        </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#education">Education</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#experience">Experience</a>
-        </li>
+<div class="wrap">
+
+  <nav>
+    <a class="logo" href="#top">raf<span>rocha</span>.com</a>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+
+  <header class="hero" id="top">
+    <div class="eyebrow"><span class="dot"></span>Seattle, WA · Open to interesting conversations</div>
+    <h1>Rafael Rocha<span class="accent">.</span></h1>
+    <p class="tagline"><strong>Senior Frontend Engineer at Amazon.</strong> Shipping AI agents and the UIs they live in.</p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="#contact">Get in touch</a>
+      <a class="btn btn-ghost" href="https://www.linkedin.com/in/rafrocha" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn btn-ghost" href="https://github.com/rafrocha" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </header>
+
+  <section class="about reveal" id="about">
+    <div class="sec-label"><span>01</span> · About</div>
+    <h2>Building digital experiences that hold up.</h2>
+    <p>
+      I'm a Brazilian Canadian engineer in Seattle with 8+ years turning complex
+      problems into fast, accessible interfaces. At <strong>Amazon</strong> I lead
+      frontend for internal HR and compensation platforms, own an organization-wide
+      design system library, and pioneer <strong>AI-enhanced engineering practices</strong>
+      across my team.
+    </p>
+    <p>
+      My focus is the unglamorous stuff that makes products feel effortless:
+      performance budgets, component architecture, and accessibility done right.
+      Outside of work you'll find me gaming, exploring new places, or attempting
+      to cook (emphasis on attempting).
+    </p>
+  </section>
+
+  <section class="reveal" id="experience">
+    <div class="sec-label"><span>02</span> · Experience</div>
+    <h2>Where I've worked.</h2>
+
+    <div class="job">
+      <div class="job-head">
+        <div>
+          <div class="job-role">Senior Frontend Engineer</div>
+          <div class="job-co">@ Amazon</div>
+        </div>
+        <div class="job-dates">Aug 2021 — Present</div>
+      </div>
+      <ul>
+        <li>Lead frontend engineer for internal compensation and HR platforms used across the company</li>
+        <li>Own the organization-wide design system library: components, tokens, docs, adoption</li>
+        <li>Pioneer AI engineering practices: agent-assisted development, reusable skills, curated docs</li>
+        <li>Drive performance and accessibility (WCAG 2.1 AA) as non-negotiable defaults</li>
       </ul>
     </div>
-  </nav> -->
-  <div class="container-fluid parallax">
-    <div id="main" class="row wrapper main-about">
-      <div id="bootstrap-override" class="col-md-3">
-        <img src="Profile.png" class="curve">
-      </div>
-      <div id="bootstrap-override" class="col-md-7">
-        <p class="name-title">Rafael Rocha</p>
-        <p class="name-subtitle">SOFTWARE DEVELOPER</p>
-        <div class="row contact-info">
-          <div id="bootstrap-override" class="col-md-12 contact-column">
-            <div class="button-wrapper">
-              <button type="button" class="btn btn-dark override"><i class="fab fa-github"></i><a href="https://github.com/rafrocha"> rafrocha</a></button>
-              <button type="button" class="btn btn-dark override"><i class="fas fa-envelope"></i><a> rafaelmarianorocha@gmail.com</a></button>
-              <button type="button" class="btn btn-dark override"><i class="fas fa-phone"></i><span> +1.778.323.3909</span></button>
-              <button type="button" class="btn btn-dark override"><i class="fas fa-map-marker-alt"></i><span> Vancouver, BC</span></button>
-              <button type="button" class="btn btn-dark override"><i class="fab fa-linkedin-in"></i><a href="https://www.linkedin.com/in/rafael-mariano-da-rocha-b0005742/"> Rafael M. Rocha</a></button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="about-me">
-        <p class="introduction"> About me</p>
-        <p class="about-text">A junior Web developer with a drive to solve problems. My background has enabled me to smoothly adapt when transitioning between working independently and working as part of a team. Efficiency and user experience combined with solutions that anticipate future needs have been my focus since starting this journey. As a true Brazilian, I love playing sports when away form the keyboard. </p>
-      </div>
-    </div>
-    <hr width="55%" height="30px">
-    <div class="wrapper-columns skills-col">
-      <div class="col-md-12">
-        <h4 class="tags-title" id="skills">Stack</h4>
-        <ul class="skill-list">
-          <li class="skill-item"> <img class="icons-img" src="Images/Bootstrap.png" />Bootstrap</li>
-          <li class="skill-item"> <img class="icons-img" src="Images/Git.png" />
-            <br>Git</li>
-          <li class="skill-item"> <img class="icons-img" src="Images/Javascript.png" />
-            <br>Javascript </li>
-          <li class="skill-item"> <img class="icons-img" src="Images/CSS.png" />
-            <br>CSS </li>
-          <li class="skill-item"> <img class="icons-img" src="Images/HTML.png" />
-            <br>HTML </li>
-          <li class="skill-item"> <img class="icons-img" src="Images/Postgres.png" />
-            <br>Postgres </li>
-          <li class="skill-item"> <img class="icons-img" src="Images/MongoDB.png" />
-            <br>MongoDB </li>
-          <li class="skill-item"> <img class="icons-img" src="Images/React.png" />
-            <br>React </li>
-          <li class="skill-item"> <img class="icons-img" src="Images/Express.png" />
-            <br>Express </li>
-          <li class="skill-item"> <img class="icons-img" src="Images/Rails.png" />
-            <br>Rails </li>
-          <li class="skill-item"> <img class="icons-img" src="Images/Ruby.png" />
-            <br>Ruby</li>
-          <li class="skill-item"> <img class="icons-img" src="Images/Git.png" />
-            <br>Node.js </li>
-        </ul>
-      </div>
-    </div>
-    <hr width="55%" height="30px" style='clear:both;'>
-    <div id="projects" class="row">
-      <div class="wrapper-columns-projects">
-        <div class="col-md-12">
-          <h4 class="tags-title">Projects</h4>
-          <ul class="projects-container">
-            <li class="hordeland">
-              <div class="card" style="width: 18rem;">
-                <img class="card-img-top" src="https://github.com/rafrocha/rafrocha.github.io/blob/master/Half_Screen_GameShot.png?raw=true" alt="Card image cap">
-                <div class="card-body">
-                  <h5 class="card-title">Horde Land</h5>
-                  <p class="card-text">Online multi-player shooting 2D game. Built with HTML Canvas and Vanilla Javascript. No game engines used on this project. React for UI rendering (Chat, Scoreboard, activity log, game announcements). NodeJS and Express server. Using Scoket.io.</p>
-                  <a href="https://hordeland.herokuapp.com/" class="btn btn-dark">Play Game</a>
-                </div>
-              </div>
-            </li>
-            <li class="chatty">
-              <div class="card" style="width: 18rem;">
-                <img class="card-img-top" src="https://github.com/rafrocha/ChattyApp/blob/master/build/FirstUsers.png?raw=true" alt="Card image cap">
-                <div class="card-body">
-                  <h5 class="card-title">Chatty</h5>
-                  <p class="card-text">Multi-user messaging client built using React with a Node and Express server backend. Development focused on implementing WebSockets and the React framework.</p>
-                  <a href="https://github.com/rafrocha/ChattyApp" class="btn btn-dark">Github Repo</a>
-                </div>
-              </div>
-            </li>
-            <li class="bendito">
-              <div class="card" style="width: 18rem;">
-                <img class="card-img-top" src="Bendito-shot.png" alt="Card image cap">
-                <div class="card-body">
-                  <h5 class="card-title">Bendito</h5>
-                  <p class="card-text">A responsive, team-built food-ordering and order management application that communicates with clients via SMS. Stack: JS, PSQL, Express, Twilio, Ajax, jQuery and HTML/CSS/SASS.</p>
-                  <a href="http://bendito.herokuapp.com/" class="btn btn-dark">Visit Heroku app</a>
-                </div>
-              </div>
-            </li>
-            <li class="oinker">
-              <div class="card" style="width: 18rem;">
-                <img class="card-img-top img-fluid" src="https://raw.githubusercontent.com/rafrocha/tweeter/master/Screenshots-Oinker/Mobile%20delete%20button%20appearing%20with%20box.png" alt="Card image cap">
-                <div class="card-body">
-                  <h5 class="card-title">Oinker</h5>
-                  <p class="card-text">Single-page Twitter clone built using HTML, CSS, JavaScript, jQuery, and AJAX on the front-end, and Node, Express, and MongoDB on the back-end. Development focused on database integration.</p>
-                  <a href="http://oinkerapp.herokuapp.com/" class="btn btn-dark">Visit Heroku app</a>
-                </div>
-              </div>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <!--     <div id="education" class="row">
-      <div class="wrapper-columns experience">
-        <div class="col-md-12">
-          <h4 class="tags-title">Education</h4>
-          <div class="ey">
-            <h5 class="experience-company">LIGHTHOUSE LABS</h5>
-            <p class="experience-title"> Web Development Bootcamp - July 2018 to Aug 2018</p>
-            <p class="description">
-              Full-Time Immersive Web Development Bootcamp Lighthouse Labs Jan. 2018 to Feb.</p>
-          </div>
-          <div class="ey">
-            <h5 class="experience-company">LIGHTHOUSE LABS</h5>
-            <p class="experience-title"> Front-end Fundamentals Course - Jan 2018 to Feb 2018</p>
-            <p class="description">
-              Part-time Front-end focused Course.</p>
-          </div>
-          <div class="ey">
-            <h5 class="experience-company">BCIT</h5>
-            <p class="experience-title"> Financial Management - Apr 2015 to Apr 2017</p>
-            <p class="description">
-              Full-time Certificate Finance and Accounting 2017.</p>
-          </div>
-          <div class="ey">
-            <h5 class="experience-company">PUCRS</h5>
-            <p class="experience-title"> Bachelor's Degree - Jan 2009 to Dec 2013</p>
-            <p class="description">
-              Business Administration with a minor in computer science.</p>
-          </div>
-        </div>
-      </div>
-    </div> -->
-    <hr width="55%" height="30px">
-    <div id="experience" class="row">
-      <div class="wrapper-columns experience">
-        <div class="col-md-12">
-          <h4 class="tags-title" id="experience">Experience</h4>
-          <div class="lhl">
-            <h5 class="experience-company">LIGHTHOUSE LABS</h5>
-            <p class="experience-title"> Project Evaluator - January 2019 to Current - Vancouver, BC</p>
-            <p class="description">
-                As a project evaluator, I am responsible for providing feedback and grading bootcamp students projects throught their program.
-                We evaluate them on several different pillars:
-                <br> - Project Structure;
-                <br> - Code Styling and Best Practices;
-                <br> - Code readability and reusability;
-                <br> - Solution Techniques;
-                <br> - Version Control skills;
-                <br> - User Experience;
 
-              </p>
-          </div>
-          <div class="aex">
-            <h5 class="experience-company">AGREEMENT EXPRESS</h5>
-            <p class="experience-title"> Software Developer - Sept 2018 to Current - Vancouver, BC</p>
-            <p class="description">
-                Agreement Express is the global leader in SaaS-based contract management software for the financial services industry.
-                I am part of a team that builds responsive landing pages for payments companies. 
-                We also build dynamic Scorecards for Merchant and Owner analysis through various API integrations services.
-                <br>Front-end:
-                <br> - React.js
-                <br> - Redux
-                <br> - Polymer
-                <br>Back-end:
-                <br> - Java
-                <br> - MySQL/MongoDB
-
-              </p>
-          </div>
-          <div class="scotiabank">
-            <h5 class="experience-company">THE BANK OF NOVA SCOTIA</h5>
-            <p class="experience-title"> Financial Advisor - June 2017 to June 2018 - Vancouver, BC</p>
-            <p class="description">
-              Working mostly at the main Downtown Vancouver branch, this experience was heavily focused on client relationship and working independently while focusing on the overall district sales goals.
-              <br>Built a solid customer portfolio with over 100 foreign students/workers prospected through personal connections.
-            </p>
-            <p class="experience-title"> Customer Service Representative - May 2015 to June 2017 - Vancouver, BC</p>
-            <p class="description">
-              While attending school at BCIT, I became senior representative, providing feedback and training to new tellers.
-              <br>Worked as a foreign recruiter for newly arrived potential customers, establishing more than 200 new successful referrals.</p>
-          </div>
-          <div class="ey">
-            <h5 class="experience-company">ERNST & YOUNG (EY)</h5>
-            <p class="experience-title"> IT Auditor & Consultant - Aug 2012 to Aug 2014 - Brazil</p>
-            <p class="description">
-              Worked as a consultant/auditor on projects with multinational companies of various market segments.
-              <br> The main tasks performed include:
-              <br> - Software/Server Logic Access Management Assessment
-              <br> - Process Mapping and Improvement
-              <br> - Software Change Management Audit</p>
-          </div>
+    <div class="job">
+      <div class="job-head">
+        <div>
+          <div class="job-role">Software Engineer</div>
+          <div class="job-co">@ Calabrio</div>
         </div>
+        <div class="job-dates">Sep 2019 — Aug 2021</div>
+      </div>
+      <ul>
+        <li>Optimized React components, cutting request times by ~30%</li>
+        <li>Migrated legacy codebases to React and Redux</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-head">
+        <div>
+          <div class="job-role">Software Developer</div>
+          <div class="job-co">@ Agreement Express</div>
+        </div>
+        <div class="job-dates">Sep 2018 — Sep 2019</div>
+      </div>
+      <ul>
+        <li>Built financial services interfaces for enterprise clients</li>
+        <li>Developed dynamic merchant analysis scorecards</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="reveal" id="skills">
+    <div class="sec-label"><span>03</span> · Skills</div>
+    <h2>What I work with.</h2>
+
+    <div class="skill-group">
+      <h3>Current focus</h3>
+      <div class="pills">
+        <span class="pill hot">AI Agents</span>
+        <span class="pill hot">LLM Application Development</span>
+        <span class="pill hot">Prompt Engineering</span>
+        <span class="pill hot">Design Systems</span>
       </div>
     </div>
-  </div>
-  </div>
-  </div>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-  <script>
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-      e.preventDefault();
 
-      document.querySelector(this.getAttribute('href')).scrollIntoView({
-        behavior: 'smooth'
-      });
-    });
-  });
-  </script>
+    <div class="skill-group">
+      <h3>Frontend</h3>
+      <div class="pills">
+        <span class="pill">React</span>
+        <span class="pill">TypeScript</span>
+        <span class="pill">JavaScript (ES6+)</span>
+        <span class="pill">HTML5</span>
+        <span class="pill">CSS3</span>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <h3>Engineering</h3>
+      <div class="pills">
+        <span class="pill">Web Performance</span>
+        <span class="pill">Accessibility (WCAG)</span>
+        <span class="pill">Component Architecture</span>
+        <span class="pill">Technical Leadership</span>
+        <span class="pill">Mentoring</span>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <h3>Tooling &amp; Cloud</h3>
+      <div class="pills">
+        <span class="pill">Vite</span>
+        <span class="pill">Storybook</span>
+        <span class="pill">Vitest</span>
+        <span class="pill">Cypress</span>
+        <span class="pill">CI/CD</span>
+        <span class="pill">AWS CDK</span>
+        <span class="pill">S3</span>
+        <span class="pill">Lambda</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="reveal" id="contact">
+    <div class="contact-card">
+      <div class="sec-label"><span>04</span> · Contact</div>
+      <h2>Let's connect.</h2>
+      <p>Always open to talking shop: frontend architecture, AI tooling, design systems, or what's next.</p>
+      <div class="cta-row" style="justify-content: center;">
+        <a class="btn btn-primary" href="https://www.linkedin.com/in/rafrocha" target="_blank" rel="noopener">Message me on LinkedIn</a>
+      </div>
+      <div class="contact-links">
+        <a href="https://github.com/rafrocha" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/rafrocha" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+      <div class="phone">Seattle, WA · (206) 939-9836</div>
+    </div>
+  </section>
+
+  <footer>
+    <span>© <span id="year">2026</span> Rafael Rocha</span>
+    <span class="plain">Plain HTML. No frameworks. No subscriptions.</span>
+  </footer>
+
+</div>
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
 </body>
-
 </html>
